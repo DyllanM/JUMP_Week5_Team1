@@ -1,7 +1,12 @@
 package Menus;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import DatabaseConnection.ConnectionManager;
 
 public class Menu {
 
@@ -19,9 +24,23 @@ public class Menu {
 			password = scanner.nextLine();
 			
 			System.out.println("you're entering: "+ id + " "+ password);
-			System.exit(0);
+
+
+			// testing connection manager ////////////////////////////////////////////////
+			Connection conn = ConnectionManager.getConnection();
+			Statement stmt = conn.createStatement(); 
+
+			boolean count = stmt.execute("select * from users");
+			System.out.println(count);
+
+			stmt.close();
+
+			
 			
 		}catch(InputMismatchException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
