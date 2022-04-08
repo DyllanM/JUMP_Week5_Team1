@@ -36,6 +36,12 @@ public class Shows {
 	public void setCategory(String category) {
 		this.category = category;
 	}
+
+	@Override
+	public String toString() {
+		return "Shows [show_id=" + show_id + ", show_name=" + show_name + ", category=" + category + "]";
+	}
+	
 	
 	
 	

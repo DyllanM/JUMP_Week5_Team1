@@ -23,37 +23,19 @@ public class Menu {
 		String id ="";
 		String password = "";
 		
-		try {
-			System.out.print("Please enter your id: ");
-			id = scanner.nextLine();
-			
-			System.out.print("Please enter your password:");
-			password = scanner.nextLine();
-			
-			System.out.println("you're entering: "+ id + " "+ password);
-			
-			
+		
+		System.out.print("Please enter your id: ");
+		id = scanner.nextLine();
+		
+		System.out.print("Please enter your password:");
+		password = scanner.nextLine();
+		
+		System.out.println("you're entering: "+ id + " "+ password);
 			/////////////////// ADD ACTUAL LOGIN CHECK ///////////////////////////////
 
 
 			// testing connection manager ////////////////////////////////////////////////
-			Connection conn = ConnectionManager.getConnection();
-			Statement stmt = conn.createStatement(); 
 
-			ResultSet count = stmt.executeQuery("select * from users");
-			System.out.println(count);
-
-			stmt.close();
-			conn.close();
-
-			
-			
-		}catch(InputMismatchException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 		
 	
@@ -110,7 +92,7 @@ public class Menu {
 		// display show list: unstarted if 1, in progress if 2
 		// take ID and mark show depending on showNumber
 		
-		System.out.println("TrackO " + showNumber);
+		System.out.println("Track " + showNumber);
 		
 	}
 }
