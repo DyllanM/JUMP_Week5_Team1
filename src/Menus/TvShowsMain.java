@@ -7,6 +7,9 @@ public class TvShowsMain {
 		
 		Menu menu = new Menu();
 		menu.welcomeMenu();
+		
+		while (menu.running)
+			menu.trackerPage();
 	}
 
 }
