@@ -1,5 +1,8 @@
 package Menus;
 
+import DatabaseConnection.ConnectionManager;
+import DatabaseConnection.ShowsSql;
+
 public class TvShowsMain {
 
 	public static void main(String[] args) {
@@ -10,6 +13,13 @@ public class TvShowsMain {
 		
 		while (menu.running)
 			menu.trackerPage();
+		
+		ConnectionManager.getConnection();
+		
+//		get all the records from table shows in Mysql; 
+//		ShowsSql showssql = new ShowsSql();
+//		System.out.println(showssql.getAllShows());
 	}
+	
 
 }
