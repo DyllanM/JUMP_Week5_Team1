@@ -62,7 +62,7 @@ public class ShowsSql implements ShowsDAO{
 				int id = rs.getInt("show_id");
 				String show_name = rs.getString("show_name");
 				String category = rs.getString("category");
-				shows = new Shows(show_id, show_name, category);
+				shows = new Shows(id, show_name, category);
 				
 				showsList.add(shows);
 				
