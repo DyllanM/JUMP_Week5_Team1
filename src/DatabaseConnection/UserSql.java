@@ -39,9 +39,8 @@ public class UserSql implements UserDAO{
 			
 			}
 			if(user==null) {
-				System.err.println("Password do not match! or No such User ");
+				System.err.println("Password Does Not Match! or No Such a User ");
 			}
-			
 			
 
 		}catch(SQLException e) {
