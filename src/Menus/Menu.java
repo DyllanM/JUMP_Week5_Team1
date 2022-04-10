@@ -14,8 +14,7 @@ public class Menu {
 	protected boolean running = true;
 	private Scanner scanner;
 	
-	Menu()
-	{
+	Menu(){
 		scanner = new Scanner(System.in);
 	}
 	

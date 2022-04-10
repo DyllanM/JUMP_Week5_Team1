@@ -31,6 +31,12 @@ public class User {
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
 	}
+
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", user_name=" + user_name + "]";
+	}
 	
 	
 	

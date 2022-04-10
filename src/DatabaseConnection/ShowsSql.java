@@ -21,7 +21,7 @@ public class ShowsSql implements ShowsDAO{
     
 	@Override
 	public List<Shows> getAllShows() {
-		List<Shows> showsList = new ArrayList<Shows>();
+		List<Shows> allShowsList = new ArrayList<Shows>();
 		String getAllShowsQuery = "SELECT * FROM shows;";
 		
 		try {
@@ -34,6 +34,36 @@ public class ShowsSql implements ShowsDAO{
 				String category = rs.getString("category");
 				shows = new Shows(show_id, show_name, category);
 				
+				allShowsList.add(shows);
+				
+			}
+			return allShowsList;
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return allShowsList;
+	}
+
+	@Override
+	public List<Shows> getShowsById(int show_id) {
+		
+		List<Shows> showsList = new ArrayList<Shows>();
+		String getShowsByIdQuery = "SELECT * FROM shows WHERE show_id=?;"; 
+		
+		try {
+			pstmt = conn.prepareStatement(getShowsByIdQuery);
+			
+			pstmt.setInt(1, show_id);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int id = rs.getInt("show_id");
+				String show_name = rs.getString("show_name");
+				String category = rs.getString("category");
+				shows = new Shows(id, show_name, category);
+				
 				showsList.add(shows);
 				
 			}
@@ -43,13 +73,8 @@ public class ShowsSql implements ShowsDAO{
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
+		
 		return showsList;
-	}
-
-	@Override
-	public Shows getShowsById(int id) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

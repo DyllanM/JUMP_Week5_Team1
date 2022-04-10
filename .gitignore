@@ -1,8 +1,7 @@
-<<<<<<< HEAD
+
 /src/DatabaseConnection/ConnectionManager.java
 /Jump-Week5-GroupProject-Team1.iml
-=======
 .idea/
+bin/
+.classpath
 
-Jump-Week5-GroupProject-Team1.iml
->>>>>>> 2038a57d627f148598dc3b197791786207c3cc9e
