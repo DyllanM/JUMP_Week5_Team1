@@ -34,7 +34,7 @@ public class Menu {
 			/////////////////// ADD ACTUAL LOGIN CHECK ///////////////////////////////
 
 
-			// testing connection manager ////////////////////////////////////////////////
+
 
 	}
 		
@@ -51,7 +51,9 @@ public class Menu {
 
 		System.out.print("Enter Option: ");
 		input = scanner.nextLine();
+		System.out.println("\n");
 		
+		int showInput = -1;
 		
 		switch(input)
 		{
@@ -60,19 +62,26 @@ public class Menu {
 			//input show id 
 			//mark that show as in progress
 			
-			trackerOperations(1);
+			System.out.print("Enter ID of show to begin watching: ");
+			showInput = scanner.nextInt();
+			System.out.println("\n");
+
 			break;
 			
 		case "2":
 			//display in progress shows
 			//input show id 
 			//mark that show as finished
+			
+			System.out.print("Enter ID of show to finish watching: ");
+			showInput = scanner.nextInt();
+			System.out.println("\n");
 
-			trackerOperations(2);
 			break;
 			
 		case "3":
 			running = false;
+			System.out.println("\n\nExiting Program...\n\n");
 			scanner.close();
 			break;
 			

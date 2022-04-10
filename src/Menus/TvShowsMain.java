@@ -14,7 +14,7 @@ public class TvShowsMain {
 		while (menu.running)
 			menu.trackerPage();
 		
-		ConnectionManager.getConnection();
+		//ConnectionManager.getConnection();
 		
 //		get all the records from table shows in Mysql; 
 //		ShowsSql showssql = new ShowsSql();
