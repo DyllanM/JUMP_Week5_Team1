@@ -1,9 +1,14 @@
 
 package Exceptions;
 
-public class CustomException1
+public class LoginInvalidException extends Exception
 {
+	private static final long serialVersionUID = 1L;
 	
+	public LoginInvalidException(String message)
+	{
+		super(message);
+	}
 }
 
 

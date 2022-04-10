@@ -22,6 +22,7 @@ public class UserSql implements UserDAO{
 	public User getUserByIdNPassword(int id, String password) {
 		
 		String getUserQuery = "SELECT * FROM users WHERE user_id = ? AND user_password = ?;";
+		user = null;
 		
 		try {
 			pstmt = conn.prepareStatement(getUserQuery);
@@ -36,6 +37,39 @@ public class UserSql implements UserDAO{
 				int user_id = rs.getInt("user_id");
 				String username = rs.getString("username");
 				user = new User(user_id, username);
+				}
+			
+			if(user==null) {
+				
+			}
+			
+
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return user;
+	}
+	
+	@Override
+
+	public User getUserByNamePassword(String username, String password) {
+		
+		String getUserQuery = "SELECT * FROM users WHERE username = ? AND user_password = ?;";
+		
+		try {
+			pstmt = conn.prepareStatement(getUserQuery);
+			
+			pstmt.setString(1, username);
+			pstmt.setString(2, password);
+			
+		
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int user_id = rs.getInt("user_id");
+				String user_name = rs.getString("username");
+				user = new User(user_id, username);
 			
 			}
 			if(user==null) {
@@ -48,6 +82,7 @@ public class UserSql implements UserDAO{
 		}
 		
 		return user;
+		
 	}
 
 }

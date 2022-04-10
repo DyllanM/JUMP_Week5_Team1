@@ -5,36 +5,51 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
-import DatabaseConnection.ConnectionManager;
+import DatabaseConnection.*;
+
+import Exceptions.LoginInvalidException;
 
 public class Menu {
 
 	protected boolean running = true;
 	private Scanner scanner;
+
+	TrackerSql trackersql;
+	UserSql usersql;
+	ShowsSql showsql;
+	
+	int userID = -1;
 	
 	Menu(){
 		scanner = new Scanner(System.in);
+		
+		trackersql = new TrackerSql();
+		usersql = new UserSql();
+		showsql = new ShowsSql();
 	}
 	
-	public void welcomeMenu() {
-		String id ="";
+	public void welcomeMenu() throws LoginInvalidException{
+		String username = "";
 		String password = "";
 		
 		
-		System.out.print("Please enter your id: ");
-		id = scanner.nextLine();
-		
+		System.out.print("Please enter your username: ");
+		username = scanner.nextLine();
 		System.out.print("Please enter your password:");
 		password = scanner.nextLine();
 		
-		System.out.println("you're entering: "+ id + " "+ password);
-			/////////////////// ADD ACTUAL LOGIN CHECK ///////////////////////////////
-
-
-
-
+		User response = usersql.getUserByNamePassword(username, password);
+		
+		if(response == null)
+		{
+			throw new LoginInvalidException("test");
+		}
+		
+		userID = response.getId();
+		
 	}
 		
 	
@@ -61,8 +76,16 @@ public class Menu {
 			//input show id 
 			//mark that show as in progress
 			
+			List<Integer> showList = trackersql.getShowIdByUserId(userID);
+			for(Integer i : showList)
+			{
+				System.out.println(showsql.getShowsById(i));
+			}
+			
 			System.out.print("Enter ID of show to begin watching: ");
 			showInput = scanner.nextInt();
+			
+			trackersql.updateTrackerStatusByShowId("PRO", showInput);
 			System.out.println("\n");
 
 			break;
@@ -72,8 +95,16 @@ public class Menu {
 			//input show id 
 			//mark that show as finished
 			
+			List<Integer> showList2 = trackersql.getShowIdByUserId(userID);
+			for(Integer i : showList2)
+			{
+				System.out.println(showsql.getShowsById(i));
+			}
+			
 			System.out.print("Enter ID of show to finish watching: ");
 			showInput = scanner.nextInt();
+			
+			trackersql.updateTrackerStatusByShowId("COM", showInput);
 			System.out.println("\n");
 
 			break;
